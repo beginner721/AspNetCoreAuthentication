@@ -29,6 +29,11 @@ namespace AspnetCoreIdentity
             services.AddRazorPages();
             services.AddDbContext<AuthDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("AuthConnectionString")));
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
+
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Login";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
